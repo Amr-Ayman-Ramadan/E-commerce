@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AuthController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -11,7 +12,6 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
 
-    Route::get('/', function () {
-        return view('dashboard.welcome');
-    });
+    Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
+
 });

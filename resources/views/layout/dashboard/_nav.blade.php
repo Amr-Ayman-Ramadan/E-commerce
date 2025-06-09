@@ -214,7 +214,7 @@
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span class="mr-1">Hello,
-                  <span class="user-name text-bold-700">John Doe</span>
+                  <span class="user-name text-bold-700">{{auth()->user()->name ?? ""}}</span>
                 </span>
                             <span class="avatar avatar-online">
                   <img src="{{asset("/assets/dashboard")}}/images/portrait/small/avatar-s-19.png"
@@ -227,7 +227,10 @@
                             <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                             <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
+                            <form action="{{route("dashboard.logout")}}" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item" href="{{route("dashboard.logout")}}"><i class="ft-power"></i> Logout</button>
+                            </form>
                         </div>
                     </li>
                     <li class="dropdown dropdown-language nav-item">
