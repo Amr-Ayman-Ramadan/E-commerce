@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AuthController;
+use App\Http\Controllers\Dashboard\CountryController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\WelcomeController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -44,6 +46,12 @@ Route::group(
                     });
                 });
 
+                Route::group(["prefix" => "countries", 'as' => 'countries.'], function () {
+                    Route::controller(CountryController::class)->group(function () {
+                        Route::get('/', 'index')->name('index');
+                        Route::get('/changeStatus/{country}', 'changeCountryStatus')->name('changeStatus');
+                    });
+                });
             });
 
             Route::group(['prefix' => 'auth', 'as' => 'auth.'], function() {
@@ -70,13 +78,65 @@ Route::group(
 });
 
 
+ // EndPoint : https://apitest.myfatoorah.com/v2/SendPayment
+// method : post
+// header : Authorization => Bearer rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL
+
+//    $postFields = [
+//        //Fill required data
+//        'InvoiceValue'       => $invoiceValue,
+//        'CustomerName'       => 'fname lname',
+//        'NotificationOption' => 'LNK', //'SMS', 'EML', or 'ALL'
+//        //Fill optional data
+//        //'DisplayCurrencyIso' => $displayCurrencyIso,
+//        //'MobileCountryCode'  => $phone[0],
+//        //'CustomerMobile'     => $phone[1],
+//        //'CustomerEmail'      => 'email@example.com',
+//        //'CallBackUrl'        => 'https://example.com/callback.php',
+//        //'ErrorUrl'           => 'https://example.com/callback.php', //or 'https://example.com/error.php'
+//        //'Language'           => 'en', //or 'ar'
+//        //'CustomerReference'  => 'orderId',
+//        //'CustomerCivilId'    => 'CivilId',
+//        //'UserDefinedField'   => 'This could be string, number, or array',
+//        //'ExpiryDate'         => '', //The Invoice expires after 3 days by default. Use 'Y-m-d\TH:i:s' format in the 'Asia/Kuwait' time zone.
+//        //'CustomerAddress'    => $customerAddress,
+//        //'InvoiceItems'       => $invoiceItems,
+//        //'Suppliers'          => $suppliers,
+//    ];
 
 
 
 
+    Route::get("/test", function(){
 
+        $response = Http::withHeaders(['Authorization'=>'Bearer rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL'])
+                  ->timeout(30)
+                  ->withoutVerifying()
+                  ->send("post","https://apitest.myfatoorah.com/v2/SendPayment",[
+                      'json'=>[
+                            'InvoiceValue'       => 1000,
+                            'CustomerName'       => 'Amr',
+                            'NotificationOption' => 'LNK', //'SMS', 'EML', or 'ALL'
+                            'DisplayCurrencyIso' => "EGP",
+                            'MobileCountryCode'  => "+20",
+                            'CustomerMobile'     => "01126258745",
+                            'CustomerEmail'      => 'email@example.com',
+                            'CallBackUrl'        => 'http://127.0.0.1:8001/test/callback',
+                            'ErrorUrl'           => 'http://127.0.0.1:8001/test/error',
+                            'Language'           => 'en',
+                      ]
+                  ]);
 
+            return redirect($response['Data']['InvoiceURL']);
+    });
 
+    Route::get("/test/callback", function(){
+        return request();
+    });
+
+    Route::get("/test/error", function(){
+        return request();
+    });
 
 
 

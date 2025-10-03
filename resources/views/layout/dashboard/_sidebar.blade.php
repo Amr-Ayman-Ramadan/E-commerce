@@ -42,6 +42,15 @@
                 </ul>
             </li>
 
+            <li class=" nav-item">
+                <a href="{{route("dashboard.admins.index")}}"><i class="la la-columns"></i>
+                    <span class="menu-title" data-i18n="nav.page_layouts.main">Countries</span>
+                </a>
+                <ul class="menu-content">
+                    <li><a class="menu-item" href="{{route("dashboard.countries.index")}}" data-i18n="nav.page_layouts.1_column">Countries</a></li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>

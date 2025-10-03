@@ -12,6 +12,9 @@
 <link rel="stylesheet" type="text/css" href="{{asset("/assets/dashboard")}}/vendors/css/charts/jquery-jvectormap-2.0.3.css">
 <link rel="stylesheet" type="text/css" href="{{asset("/assets/dashboard")}}/vendors/css/charts/morris.css">
 <link rel="stylesheet" type="text/css" href="{{asset("/assets/dashboard")}}/fonts/simple-line-icons/style.css">
+
+@stack('styles')
+
 @if(app()->getLocale() == 'ar')
     <link rel="stylesheet" type="text/css" href="{{asset("/assets/dashboard")}}/css-rtl/vendors.css">
     <!-- END VENDOR CSS-->
