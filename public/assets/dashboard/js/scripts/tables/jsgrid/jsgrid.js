@@ -127,7 +127,7 @@ $("#validation").jsGrid({
         { name: "Age", type: "number", width: 50, validate: { validator: "range", param: [18, 80] } },
         { name: "Address", type: "text", width: 200, validate: { validator: "rangeLength", param: [10, 250] } },
         { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name",
-            validate: { message: "Country should be specified", validator: function(value) { return value > 0; } } },
+            validate: { message: "CountrySeeder should be specified", validator: function(value) { return value > 0; } } },
         { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
         { type: "control" }
     ]
@@ -281,7 +281,7 @@ var deleteClientsFromDb = function(deletingClients) {
 *************************************/
 
 $("#external").jsGrid({
-    width: "100%", 
+    width: "100%",
     paging: true,
     pageSize: 15,
     pageButtonCount: 5,

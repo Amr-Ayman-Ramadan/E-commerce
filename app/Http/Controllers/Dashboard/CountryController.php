@@ -25,9 +25,6 @@ class CountryController extends Controller
     {
         $this->countryService->changeCountryStatus($country);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Country status updated successfully!',
-            'status' => $country->is_active
-        ]);    }
+        return response()->json(['success' => true, 'message' => 'CountrySeeder status updated successfully!', 'status' => $country->is_active]);
+    }
 }

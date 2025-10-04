@@ -33,7 +33,7 @@ function drawCombo() {
 
     // Set chart options
     var options_bar = {
-        title : 'Monthly Coffee Production by Country',
+        title : 'Monthly Coffee Production by CountrySeeder',
         seriesType: 'bars',
         series: {5: {type: 'line'}},
         colors: ['#99B898','#FECEA8', '#FF847C', '#E84A5F', '#474747'],

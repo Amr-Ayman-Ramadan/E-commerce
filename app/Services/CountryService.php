@@ -17,20 +17,20 @@ class CountryService
     {
         $countries = $this->countryRepository->getCountries();
 
-        return $countries ?? abort(404, 'Country not found');
+        return $countries ?? abort(404, 'CountrySeeder not found');
     }
 
     public function getCountryById($countryId)
     {
         $country = $this->countryRepository->getCountryById($countryId);
 
-        return $country ?? abort(404, 'Country not found');
+        return $country ?? abort(404, 'CountrySeeder not found');
     }
 
     public function changeCountryStatus(Country $country)
     {
        $country =  $this->countryRepository->changeCountryStatus($country);
 
-       return $country ?? abort(404, 'Country not found');
+       return $country ?? abort(404, 'CountrySeeder not found');
     }
 }
