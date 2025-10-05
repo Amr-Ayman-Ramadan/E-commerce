@@ -27,4 +27,11 @@ class CountryController extends Controller
 
         return response()->json(['success' => true, 'message' => 'CountrySeeder status updated successfully!', 'status' => $country->is_active]);
     }
+
+    public function getGovernorates($countryId)
+    {
+        $governorates = $this->countryService->getGovernorates($countryId);
+
+        return view('dashboard.countries.governorates', compact('governorates'));
+    }
 }

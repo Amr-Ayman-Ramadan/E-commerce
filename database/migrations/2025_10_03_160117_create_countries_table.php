@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string("phone_code")->unique();
+            $table->string("flag_code");
             $table->enum("is_active", ["active", "inactive"])->default("active");
             $table->timestamps();
         });

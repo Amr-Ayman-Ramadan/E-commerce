@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Country;
+use App\Models\Governorate;
 
 class CountryRepository
 {
     public function getCountries()
     {
-        return Country::select('id', 'name', 'phone_code','is_active')->get();
+        return Country::select('id', 'name', 'phone_code','is_active','flag_code')->get();
     }
 
     public function getCountryById($countryId)
@@ -21,5 +22,10 @@ class CountryRepository
         $country->update(["is_active" => $country->is_active === "active" ? "inactive": "active"]);
 
         return $country;
+    }
+
+    public function getGovernorates($countryId)
+    {
+        return Governorate::select('id', 'name')->where('country_id', $countryId)->get();
     }
 }

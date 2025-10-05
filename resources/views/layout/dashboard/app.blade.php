@@ -18,6 +18,9 @@
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 @include("layout.dashboard._footer")
 @include("layout.dashboard._scripts")
+
+@stack('scripts')
+
 </body>
 
 </html>

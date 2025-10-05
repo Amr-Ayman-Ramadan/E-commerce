@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum("status", ["active", "inactive"])->default("active");
+            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('governorate_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('city_id')->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });
